@@ -32,8 +32,13 @@ void setup() {
   Serial.println("Initializing IMU device...");
   CurieIMU.begin();
 
-  // Set the accelerometer range to 2G
-  CurieIMU.setAccelerometerRange(2);
+  // Set the accelerometer range to 16G
+  CurieIMU.setAccelerometerRange(16);
+
+  // Calibrating the accelerometer device
+  CurieIMU.autoCalibrateAccelerometerOffset(X_AXIS, 0);
+  CurieIMU.autoCalibrateAccelerometerOffset(Y_AXIS, 0);
+  CurieIMU.autoCalibrateAccelerometerOffset(Z_AXIS, 1);
 }
 
 void loop() {
@@ -55,16 +60,11 @@ void loop() {
   Serial.print(ay);
   Serial.print("\t");
   Serial.print(az);
-  Serial.println();
+  Serial.println();  
 }
 
 float convertRawAcceleration(int aRaw) {
-  // since we are using 2G range
-  // -2g maps to a raw value of -32768
-  // +2g maps to a raw value of 32767
-  
-  float a = (aRaw * 2.0) / 32768.0;
-
+  float a = (aRaw/32768.0)*CurieIMU.getAccelerometerRange();
   return a;
 }
 
