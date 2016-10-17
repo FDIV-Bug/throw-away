@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<!--
+	Description:
+
+	BLE example application that demonstrates how to read values
+	IMU values from the Arduino/Genuino101.
+
+	Requirements:
+
+	See text in the app user interface.
+ 
+    See http://smoothiecharts.org/ for more information about real time data streaming with
+    the smoothie.js library.
+ 
+-->
+<html>
+
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no,
+		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+
+	<title>Throw-Away Analyzer</title>
+
+	<style>
+		@import 'ui/css/evothings-app.css';
+	</style>
+
+	<script>
+	// Redirect console.log to Evothings Workbench.
+	if (window.hyper && window.hyper.log) { console.log = hyper.log }
+	</script>
+
+	<script src="cordova.js"></script>
+	<script src="libs/jquery/jquery.js"></script>
+    <script type="text/javascript" src="smoothie/smoothie.js"></script>
+	<script src="libs/evothings/evothings.js"></script>
+	<script src="libs/evothings/ui/ui.js"></script>
+	<script src="libs/evothings/easyble/easyble.js"></script>
+	<script src="app.js"></script>
+
+</head>
+
+<body ontouchstart=""><!-- ontouchstart="" enables low-delay CSS transitions. -->
+
+	<header>
+		<button class="back" onclick="history.back()">
+			<img src="ui/images/arrow-left.svg" />
+		</button>
+
+		<img class="logotype" src="ui/images/logo.svg" alt="Evothings" />
+
+		<button id="menu-button" tabindex="0" onclick="this.focus()">
+			<img src="ui/images/menu.svg" />
+		</button>
+
+		<menu>
+			<menuitem>
+				<a href="#">Demo</a>
+			</menuitem>
+
+			<menuitem>
+				<a href="#information">Info</a>
+			</menuitem>
+		</menu>
+	</header>
+
+	<h1>Throw-Away Analyzer</h1>
+
+	<p id="info">Carregando...</p>	
+    
+    <table>
+        <tr>
+        <td><button onclick="app.onStartButton()" class="green wide big">INICIAR</button></td>
+        <td><button onclick="app.onStopButton()" class="red wide big">PARAR</button></td>
+        </tr>
+    </table>
+	
+	<p>Acceleração Máxima:</p>
+	
+	<p id="mod">Carregando...</p>
+	
+
+    <table>
+		<tr><td>Plot: Aceleração:</tr></td>
+        <tr><td><canvas id="canvasAcc" width="500" height="150"</canvas></td></tr>
+    </table>
+
+	<section id='information'>
+        <!-- keep in case I would like to use this section later -->
+	</section>
+
+</body>
+
+</html>
