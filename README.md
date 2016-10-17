@@ -1,6 +1,6 @@
 # Throw-away project
 
-TO DO LIST (as of 09/04/2016):
+TO DO LIST (as of 10/17/2016):
 
 1. Learn how to precisely-ish work with the accelerometer
   1. Should it be calibrated first? So far, I belive it should.
